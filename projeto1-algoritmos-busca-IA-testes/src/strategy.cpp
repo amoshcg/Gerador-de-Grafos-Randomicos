@@ -53,28 +53,6 @@ DATA bfs(Graph &g, int max_distance, bool is_test){
     return {iteration, tot_dist, attempt_cnt};
 }
 
-// Returns how many nodes can the starting node visit
-int conected_component_size(Graph &g){
-    std::queue<Node> q;    
-    q.push(Node(g.startNode, 0, 0));
-    std::set<std::string> generated_nodes;
-
-    generated_nodes.insert(g.startNode);
-
-    while(!q.empty()){
-        Node node = q.front(); q.pop();
-
-        for(auto [u, d] : g.node_edges[node.state]){
-            if(!generated_nodes.count(u)){                       
-                generated_nodes.insert(u);
-                q.push(Node(u, d + node.g, 0));
-            }
-        }
-    }
-
-    return generated_nodes.size();
-}
-
 // It tot_dist = -1, the starting node cannot reach the finish node
 DATA a_star(Graph &g, bool is_test){
     std::set<Node> frontier;    

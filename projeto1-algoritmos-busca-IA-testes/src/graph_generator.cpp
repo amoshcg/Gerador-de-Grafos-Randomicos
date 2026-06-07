@@ -46,7 +46,8 @@ pair<pair<int,int>,pair<int,int>> random_points(set<pair<int,int>> &vertices){
     auto removido = *it;
     vertices.erase(*it);
 
-    random_number = distribution(rd);
+    uniform_int_distribution<int> distribution2(0, vertices.size() - 1);
+    random_number = distribution2(rd);
     it = vertices.begin();
     for(int i = 0; i < random_number; i++) it++;
 
@@ -186,8 +187,9 @@ void graph_to_file(const int n, const int m, const int v, const int max_weight, 
 
     for(int i = 0; i < heuristic.size(); i++){
         string name = heuristic[i].first;
+        int dis = heuristic[i].second;
         for(auto &e:edges[name]){
-            output_file << "pode_ir(" << name << "," << e << "," << distribution(rd) << ")." << "\n";
+            output_file << "pode_ir(" << name << "," << e << "," << distribution(rd) + dis << ")." << "\n";
         }
     }
 
