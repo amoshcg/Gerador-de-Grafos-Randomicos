@@ -26,8 +26,6 @@ DATA bfs(Graph &g, int max_distance, bool is_test){
     while(!q.empty() and !found){        
         Node node = q.front(); q.pop();
 
-        // std::cout << tot_dist << std::endl;
-
         if(node.state == g.endNode){
             tot_dist = node.g;
             found = true;
